@@ -105,7 +105,7 @@ class RegisterController extends Controller
             'last_name' => ucwords($data['last_name'], '- '),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'email_token' => str_random(64),
+            'email_token' => \Str::random(64),
         ]);
     }
 

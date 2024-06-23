@@ -29,7 +29,7 @@ class FormResponse extends Model
     public function generateResponseCode()
     {
         do {
-            $this->response_code = str_random(64);
+            $this->response_code = \Str::random(64);
         } while (static::where('response_code', $this->response_code)->exists());
     }
 

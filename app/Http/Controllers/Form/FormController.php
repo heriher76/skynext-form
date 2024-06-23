@@ -147,7 +147,7 @@ class FormController extends Controller
                 $unique_key = array_shift($key_parts);
                 $template = implode('_', array_reverse($key_parts));
 
-                if (!in_array(str_replace('_', '-', $template), get_form_templates()->pluck('alias')->all())) {
+                if (!in_array(\Str::replace('_', '-', $template), get_form_templates()->pluck('alias')->all())) {
                     $is_invalid_request = true;
                     break;
                 }

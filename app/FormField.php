@@ -91,7 +91,7 @@ class FormField extends Model
 
         return [
             'chart' => $use_chart,
-            'name' => str_replace('.', '_', $this->attribute),
+            'name' => \Str::replace('.', '_', $this->attribute),
             'data' => $data
         ];
     }

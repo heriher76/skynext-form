@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Exports\FormResponseExport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Arr;
 
 class ResponseController extends Controller
 {
@@ -56,13 +57,13 @@ class ResponseController extends Controller
             $validation_messages = [];
 
             foreach ($form_fields as $field) {
-                $attribute = str_replace('.', '_', $field->attribute);
+                $attribute = \Str::replace('.', '_', $field->attribute);
                 $input_data = [
                     'question' => $field->question,
-                    'value' => array_get($request->all(), $attribute),
+                    'value' => Arr::get($request->all(), $attribute),
                     'required' => $field->required,
                     'options' => $field->options,
-                    'template' => str_replace('-', '_', $field->template)
+                    'template' => \Str::replace('-', '_', $field->template)
                 ];
 
                 $inputs[$attribute] = $input_data;
@@ -117,7 +118,7 @@ class ResponseController extends Controller
                 $validation_messages[$new_attribute] = $messages;
             }
 
-            $validator = \Validator::make($request->except('_token'), $validation_rules, array_dot($validation_messages));
+            $validator = \Validator::make($request->except('_token'), $validation_rules, Arr::dot($validation_messages));
 
             if ($validator->fails()) {
                 $errors = collect($validator->errors())->flatten();
@@ -137,7 +138,7 @@ class ResponseController extends Controller
             $form->responses()->save($response);
 
             foreach ($form_fields as $field) {
-                $attribute = str_replace('.', '_', $field->attribute);
+                $attribute = \Str::replace('.', '_', $field->attribute);
                 $value = $request->input($attribute);
 
                 $field_response = new FieldResponse([

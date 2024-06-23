@@ -76,7 +76,7 @@ class CollaboratorController extends Controller
 
                     $user = User::create([
                         'email' => $email,
-                        'email_token' => str_random(64),
+                        'email_token' => \Str::random(64),
                     ]);
                 }
 

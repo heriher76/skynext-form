@@ -40,7 +40,7 @@ class FieldController extends Controller
                 ]);
             }
 
-            $attribute_prefix = str_replace('-', '_', $request->template) . '.' . bin2hex(random_bytes(4));
+            $attribute_prefix = \Str::replace('-', '_', $request->template) . '.' . bin2hex(random_bytes(4));
 
             $field = new FormField([
                 'template' => $request->template,
