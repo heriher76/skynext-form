@@ -60,7 +60,7 @@ class Form extends Model
     public function generateCode()
     {
         do {
-            $this->code = str_random(32);
+            $this->code = \Str::random(32);
         } while (static::where('code', $this->code)->exists());
     }
 
