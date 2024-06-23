@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function hasVerifiedEmail()
     {
-        return is_null($this->email_token);
+        return empty($this->email_token);
     }
 
     public function forms()
@@ -64,6 +64,6 @@ class User extends Authenticatable
 
     public function isFormCollaborator($form)
     {
-        return !is_null($this->collaboratedForms()->find($form));
+        return !empty($this->collaboratedForms()->find($form));
     }
 }
