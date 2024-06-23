@@ -17,7 +17,7 @@ class FieldController extends Controller
             $form = Form::where('code', $form)->first();
 
             $current_user = Auth::user();
-            if (!$form || ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id))) {
+            if (!$form || ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id))) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'validation_failed',
@@ -68,7 +68,7 @@ class FieldController extends Controller
             $form = Form::where('code', $form)->first();
 
             $current_user = Auth::user();
-            if (!$form || ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id))) {
+            if (!$form || ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id))) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'validation_failed',
@@ -78,7 +78,7 @@ class FieldController extends Controller
 
             $field = $form->fields()->where('id', $request->form_field)->first();
 
-            if (!$field || $field->form_id !== $form->id) {
+            if (!$field || $field->form_id != $form->id) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'validation_failed',

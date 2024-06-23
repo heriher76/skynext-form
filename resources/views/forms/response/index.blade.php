@@ -53,7 +53,7 @@
 
     @includeWhen($form->status === $form::STATUS_OPEN, 'forms.partials._form-share')
 
-    @includeWhen($form->user_id !== $current_user->id, 'forms.partials._form-collaborate')
+    @includeWhen($form->user_id != $current_user->id, 'forms.partials._form-collaborate')
 
     @include('forms.partials._form_availability')
 @endsection

@@ -8,7 +8,7 @@
     @foreach ($fields as $field)
         @php
             $responses = $field->responses;
-            $responses_count = $responses->where('answer', '!==', null)->count();
+            $responses_count = $responses->where('answer', '!=', null)->count();
         @endphp
         <div class="row">
             <div class="col-md-12">

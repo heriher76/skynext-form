@@ -73,7 +73,7 @@ class FormController extends Controller
     public function show(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 404);
 
         $form->load('fields', 'collaborationUsers', 'availability');
@@ -84,7 +84,7 @@ class FormController extends Controller
     public function edit(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 404);
 
         return view('forms.form.edit', compact('form'));
@@ -93,7 +93,7 @@ class FormController extends Controller
     public function update(Request $request, Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 404);
 
         $this->validate($request, [
@@ -122,7 +122,7 @@ class FormController extends Controller
             }
 
             $current_user = Auth::user();
-            $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+            $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
             if ($not_allowed) {
                 return response()->json([
                     'success' => false,
@@ -219,7 +219,7 @@ class FormController extends Controller
     public function previewForm(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 404);
 
         return view('forms.form.view_form', ['form' => $form, 'view_type' => 'preview']);
@@ -228,7 +228,7 @@ class FormController extends Controller
     public function openFormForResponse(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 403);
 
         $not_allowed = (!in_array($form->status, [Form::STATUS_PENDING, Form::STATUS_CLOSED]));
@@ -248,10 +248,10 @@ class FormController extends Controller
     public function closeFormToResponse(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 403);
 
-        $not_allowed = ($form->status !== Form::STATUS_OPEN);
+        $not_allowed = ($form->status != Form::STATUS_OPEN);
         abort_if($not_allowed, 403);
 
         $form->status = Form::STATUS_CLOSED;
@@ -279,7 +279,7 @@ class FormController extends Controller
             $form = Form::where('code', $form)->first();
 
             $current_user = Auth::user();
-            if (!$form || ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id))) {
+            if (!$form || ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id))) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_found',
@@ -287,7 +287,7 @@ class FormController extends Controller
                 ]);
             }
 
-            if ($form->status !== Form::STATUS_OPEN) {
+            if ($form->status != Form::STATUS_OPEN) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_allowed',
@@ -339,7 +339,7 @@ class FormController extends Controller
         if (request()->ajax()) {
             $form = Form::where('code', $form)->first();
 
-            if (!$form || $form->user_id !== Auth::id()) {
+            if (!$form || $form->user_id != Auth::id()) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_found',
@@ -363,7 +363,7 @@ class FormController extends Controller
 
         $form = Form::where('code', $form)->firstOrFail();
 
-        $not_allowed = ($form->user_id !== Auth::id());
+        $not_allowed = ($form->user_id != Auth::id());
         abort_if($not_allowed, 404);
 
         $not_allowed = ($form->status === Form::STATUS_OPEN);

@@ -17,7 +17,7 @@ class CollaboratorController extends Controller
             $form = Form::where('code', $form)->first();
 
             $current_user = Auth::user();
-            if (!$form || $form->user_id !== $current_user->id) {
+            if (!$form || $form->user_id != $current_user->id) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_found',
@@ -95,7 +95,7 @@ class CollaboratorController extends Controller
             $form = Form::where('code', $form)->first();
 
             $current_user = Auth::user();
-            if (!$form || $form->user_id !== $current_user->id) {
+            if (!$form || $form->user_id != $current_user->id) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_found',

@@ -12,7 +12,7 @@
 
     @if (in_array($form->status, [$form::STATUS_OPEN, $form::STATUS_CLOSED]))
         <li class="dropdown-header highlight"><i class="icon-menu7"></i> <i class="icon-menu6 pull-right"></i> Responses</li>
-        @if (Route::currentRouteName() !== 'forms.responses.index')
+        @if (Route::currentRouteName() != 'forms.responses.index')
             <li><a href="{{ route('forms.responses.index', $form->code) }}">View Responses</a></li>
         @endif
         @if ($form->responses()->has('fieldResponses')->exists())
@@ -23,7 +23,7 @@
 
     <li class="dropdown-header highlight"><i class="icon-menu7"></i> <i class="icon-gear pull-right"></i> Form Menu</li>
     <li><a data-toggle="modal" data-target="#form-availability" data-backdrop="static" data-keyboard="false">Form Availability Settings</a></li>
-    @if (Route::currentRouteName() !== 'forms.show')
+    @if (Route::currentRouteName() != 'forms.show')
         <li><a href="{{ route('forms.show', $form->code) }}">View Form Template</a></li>
     @endif
 
@@ -41,7 +41,7 @@
     @endif --}}
 
     <li><a href="{{ route('forms.edit', $form->code) }}">Edit Form</a></li>
-    @if ($form->status !== $form::STATUS_OPEN)
+    @if ($form->status != $form::STATUS_OPEN)
         <li><a id="delete-button" data-href="{{ route('forms.destroy', $form->code) }}" data-item="form - {{ $form->title }}">Delete Form</a></li>
     @endif
     <li><a href="{{ route('forms.index') }}">All Forms</a></li>

@@ -111,7 +111,7 @@
         $('.pickadate').each(function (index) {
             var $pickadate = $(this);
 
-            toggleFormAvailabilityResetButton(Boolean({{ $availability !== null }}));
+            toggleFormAvailabilityResetButton(Boolean({{ $availability != null }}));
 
             $pickadate.pickadate({
                 format: 'd mmmm, yyyy',

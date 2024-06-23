@@ -265,7 +265,7 @@
                             var select = $(element);
                             var name = select.hasClass('min') ? 'minvalue' : 'maxvalue';
                             var select_value = null;
-                            if (field_options !== null) {
+                            if (field_options != null) {
                                 select_value = select.hasClass('min') ? field_options['min']['value'] : field_options['max']['value'];
                             }
 
@@ -290,7 +290,7 @@
                             var input = $(element);
                             var name = input.hasClass('min') ? 'minlabel' : 'maxlabel';
                             var input_value = null;
-                            if (field_options !== null) {
+                            if (field_options != null) {
                                 input_value = input.hasClass('min') ? field_options['min']['label'] : field_options['max']['label'];
                             }
 
@@ -301,14 +301,14 @@
                             });
                         });
                     } else {
-                        var first_option = (field_options !== null) ? field_options.shift() : null;
+                        var first_option = (field_options != null) ? field_options.shift() : null;
                         template.find('input.question-option').attr({
                             name: field_data['attribute'] + '.options[]',
                             id: field_data['attribute'] + '.options',
                             value: first_option
                         });
 
-                        if (field_options !== null && field_options.length > 0) {
+                        if (field_options != null && field_options.length > 0) {
                             for (var i = 0; i < field_options.length; i++) {
                                 var options_wrapper = template.find('div.options-wrapper');
                                 var new_option = options_wrapper.find('.hidden').clone().removeClass('hidden');

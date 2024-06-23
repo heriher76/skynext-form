@@ -18,7 +18,7 @@ class ResponseController extends Controller
     public function index(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 404);
 
         $valid_request_queries = ['summary', 'individual'];
@@ -43,7 +43,7 @@ class ResponseController extends Controller
         if ($request->ajax()) {
             $form = Form::where('code', $form)->first();
 
-            if (!$form || $form->status !== Form::STATUS_OPEN) {
+            if (!$form || $form->status != Form::STATUS_OPEN) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_allowed',
@@ -158,7 +158,7 @@ class ResponseController extends Controller
     public function export(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 404);
 
         $not_allowed = $form->responses()->doesntExist();
@@ -171,8 +171,8 @@ class ResponseController extends Controller
     public function destroy(Form $form, FormResponse $response)
     {
         $current_user = Auth::user();
-        $user_not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
-        $not_allowed = ($user_not_allowed || $form->id !== $response->form_id);
+        $user_not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($user_not_allowed || $form->id != $response->form_id);
         abort_if($not_allowed, 403);
 
         $response->delete();
@@ -187,7 +187,7 @@ class ResponseController extends Controller
     public function destroyAll(Form $form)
     {
         $current_user = Auth::user();
-        $not_allowed = ($form->user_id !== $current_user->id && !$current_user->isFormCollaborator($form->id));
+        $not_allowed = ($form->user_id != $current_user->id && !$current_user->isFormCollaborator($form->id));
         abort_if($not_allowed, 403);
 
         $responses = $form->responses()->get();

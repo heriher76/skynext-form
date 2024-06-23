@@ -17,7 +17,7 @@ class FormAvailabilityController extends Controller
             $current_user = Auth::user();
 
             $form = Form::where('code', $form)->first();
-            if (!$form || $form->user_id !== $current_user->id) {
+            if (!$form || $form->user_id != $current_user->id) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_found',
@@ -25,7 +25,7 @@ class FormAvailabilityController extends Controller
                 ]);
             }
 
-            if (empty(array_filter($request->except('_token'), function ($value) { return $value !== null; }))) {
+            if (empty(array_filter($request->except('_token'), function ($value) { return $value != null; }))) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'validation_failed',
@@ -77,7 +77,7 @@ class FormAvailabilityController extends Controller
             $current_user = Auth::user();
 
             $form = Form::where('code', $form)->first();
-            if (!$form || $form->user_id !== $current_user->id) {
+            if (!$form || $form->user_id != $current_user->id) {
                 return response()->json([
                     'success' => false,
                     'error_message' => 'not_found',

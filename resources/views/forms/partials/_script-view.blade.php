@@ -121,7 +121,7 @@
                         var sample_button = options_div.find('div.' + type).clone();
                         options_div.empty();
 
-                        if (field_data['options'] !== null) {
+                        if (field_data['options'] != null) {
                             var field_options = field_data['options'];
                             for (var i = 0; i < field_options.length; i++) {
                                 var button = sample_button.clone();
@@ -155,7 +155,7 @@
                             select.attr('required', 'required');
                         }
 
-                        if (field_data['options'] !== null) {
+                        if (field_data['options'] != null) {
                             var field_options = field_data['options'];
                             var option = '<option value="">Choose an Option</option>'
                             for (var i = 0; i < field_options.length; i++) {
@@ -173,7 +173,7 @@
                             input.removeClass('input-group').addClass('no-label');
                         }
 
-                        if (min["label"] !== null) {
+                        if (min["label"] != null) {
                             var option_span = $('<span class="input-group-addon option-label"></span>');
                             option_span.text(min["label"]);
                             input.prepend(option_span);
@@ -203,7 +203,7 @@
                             values: values,
                         });
 
-                        if (max["label"] !== null) {
+                        if (max["label"] != null) {
                             var option_span = $('<span class="input-group-addon option-label"></span>');
                             option_span.text(max["label"]);
                             input.append(option_span);
