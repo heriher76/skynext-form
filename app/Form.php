@@ -7,7 +7,7 @@ use App\Mail\ShareFormLinkMail;
 use App\Mail\FormCollaborationMail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Iatstuti\Database\Support\CascadeSoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 
 class Form extends Model
 {

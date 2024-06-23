@@ -6,7 +6,7 @@ use Mail;
 use App\Mail\EmailVerificationMail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Iatstuti\Database\Support\CascadeSoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable

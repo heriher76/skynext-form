@@ -163,7 +163,7 @@ class ResponseController extends Controller
         $not_allowed = $form->responses()->doesntExist();
         abort_if($not_allowed, 404);
 
-        $filename = str_slug($form->title) . '.xlsx';
+        $filename = \Str::slug($form->title) . '.xlsx';
         return Excel::download(new FormResponseExport($form), $filename);
     }
 
